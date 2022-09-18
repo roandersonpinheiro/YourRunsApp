@@ -60,7 +60,6 @@
         android:layout_height="wrap_content"
         android:text="Let's go, USERNAME!"
         android:textAlignment="center"
-        android:textSize="50sp"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/clInnerLayout"
         app:layout_constraintEnd_toEndOf="parent"
