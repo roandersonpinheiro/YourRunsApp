@@ -198,7 +198,7 @@ class TrackingService : LifecycleService() {
                 }
                 ACTION_STOP_SERVICE -> {
                     Timber.d("Stopped service")
-                   killService()
+                    killService()
 
                 }
             }
@@ -236,14 +236,14 @@ class TrackingService : LifecycleService() {
             isAccessible = true
             set(curNotificationBuilder, ArrayList<NotificationCompat.Action>())
         }
-       if(!serviceKilled){
-           curNotificationBuilder = baseNotificationBuilder.addAction(
-               R.drawable.ic_pause_black_24dp,
-               noficationActionText,
-               pendingIntent
-           )
-           notificationManager.notify(NOTIFICATION_ID, curNotificationBuilder.build())
-       }
+        if (!serviceKilled) {
+            curNotificationBuilder = baseNotificationBuilder.addAction(
+                R.drawable.ic_pause_black_24dp,
+                noficationActionText,
+                pendingIntent
+            )
+            notificationManager.notify(NOTIFICATION_ID, curNotificationBuilder.build())
+        }
     }
 
     private fun startForegroundService() {
@@ -259,7 +259,7 @@ class TrackingService : LifecycleService() {
 
         startForeground(NOTIFICATION_ID, baseNotificationBuilder.build())
         timeRunInSeconds.observe(this, Observer {
-            if(!serviceKilled){
+            if (!serviceKilled) {
                 val notification =
                     curNotificationBuilder.setContentText(TrackUtility.getFormattedStopWatchTime(it * 1000L))
                 notificationManager.notify(NOTIFICATION_ID, notification.build())
