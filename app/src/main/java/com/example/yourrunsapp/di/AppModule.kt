@@ -1,9 +1,15 @@
 package com.example.yourrunsapp.di
 
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
 import androidx.room.Room
 import com.example.yourrunsapp.db.RunningDatabase
 import com.example.yourrunsapp.other.Constants
+import com.example.yourrunsapp.other.Constants.KEY_FIRST_TIME_TOGGLE
+import com.example.yourrunsapp.other.Constants.KEY_NAME
+import com.example.yourrunsapp.other.Constants.KEY_WEIGHT
+import com.example.yourrunsapp.other.Constants.SHARED_PREFERENCES_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,4 +34,24 @@ object AppModule {
     @Singleton
     @Provides
     fun provideRunDao(db: RunningDatabase) = db.getRunDao()
+
+    @Singleton
+    @Provides
+    fun provideSharedPreferences(@ApplicationContext applicationContext: Context) =
+        applicationContext.getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE)
+
+    @Singleton
+    @Provides
+    fun provideName(sharedPreferences: SharedPreferences) =
+        sharedPreferences.getString(KEY_NAME, "") ?: ""
+
+    @Singleton
+    @Provides
+    fun provideWeight(sharedPreferences: SharedPreferences) =
+        sharedPreferences.getFloat(KEY_WEIGHT, 80f)
+
+    @Singleton
+    @Provides
+    fun provideTimeToogle(sharedPreferences: SharedPreferences) =
+        sharedPreferences.getBoolean(KEY_FIRST_TIME_TOGGLE, false)
 }

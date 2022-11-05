@@ -75,6 +75,7 @@ class RunFragment : Fragment(R.layout.fragment_run), PermissionCallbacks {
         layoutManager = LinearLayoutManager(requireContext())
     }
 
+
     private fun requestPermissions() {
         if (TrackUtility.hasLocationPermissions(requireContext())) {
             return
